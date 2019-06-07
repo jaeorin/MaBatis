@@ -1,0 +1,11 @@
+function updateState(){
+	//input_tag is Array
+	let inputTag = document.querySelectorAll('input');
+	for (var i = 0; i < inputTag.length; i++) {
+		inputTag[i].readOnly = false;
+	}
+	
+	let updateButton = document.querySelector('.updateButton');
+	updateButton.innerHTML = "<button type='submit' form='boardForm'>수정완료</button>";
+}
+[출처] 스프링 레거시 MyBatis로 Blog만들기 ~ AWS배포까지 03 Blog 만들기 - 글쓰기 빼구|작성자 개발자

@@ -1,0 +1,36 @@
+package com.cos.blog;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.cos.blog.model.Board;
+import com.cos.blog.repository.BoardRepository;
+
+@Controller
+public class HomeController {
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home() {
+		
+		Board board = Board.builder().content("hello").build();
+		logger.info(board.getContent());
+		logger.info("home.jsp");
+		return "home";
+	}
+	
+	@RequestMapping(value = "/board/createForm", method = RequestMethod.GET)
+	public String createForm() throws Exception {
+		return "/board/createForm";
+	}
+
+	@RequestMapping(value = "/board/create", method = RequestMethod.POST)
+	public String create(Board board) throws Exception {
+		boardRepository.create(board);
+		return "redirect:/board";
+	}
+}
